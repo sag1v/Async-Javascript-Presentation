@@ -1,6 +1,0 @@
-
-[remote "origin"]
-url = https://github.com/sag1v/Async-Javascript-Presentation
-      fetch = +refs/heads/*:refs/remotes/origin/*
-      push = refs/heads/master:refs/heads/master
-      push = refs/heads/master:refs/heads/gh-pages

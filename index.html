@@ -51,18 +51,18 @@
             margin-bottom: 2px;
         }
 
-        .external-link{
+        .external-link {
             color: #ccc !important;
         }
 
-        .overlay{
+        .overlay {
             font-size: 25px;
             display: flex;
             position: fixed;
             width: 100%;
             top: 40%;
             left: 0;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
         }
 
@@ -170,6 +170,15 @@
 
         .execution-context.fixed-hight {
             min-height: 235px;
+        }
+
+        .promise-context .execution-context {
+            min-height: 225px;
+        }
+
+        .execution-context-title {
+            color: #fff755;
+            font-size: 1.1em;
         }
 
         .nested-context {
@@ -334,7 +343,7 @@
         }
 
         .event-loop-spinner {
-            background-image: url(event-loop.gif);
+            background-image: url(event-loop-colored.gif);
             background-size: contain;
             background-repeat: no-repeat;
             height: 40px;
@@ -396,6 +405,36 @@ class: fade
     * Render Steps
     * rAF
     * Tasks Priority
+---
+# Can you guess the order?
+```
+console.log(1);
+
+setTimeout(() => console.log('timer'), 0);
+
+console.log(2);
+
+Promise.resolve().then(() => console.log('promise'));
+
+console.log(3);
+```
+--
+```
+1
+
+2
+
+3
+
+promise
+
+timer
+```
+--
+<div class="flex rows" style="font-size: 8em;">
+    <img style="width: auto; max-height: 325px" src="https://www.extremetech.com/wp-content/uploads/2016/11/my_brain_is_full_of_fuck_in_hd_by_lemmino-d602afj-640x350.png" />
+    <div>WTF</div>
+</div>
 ---
 class: center, middle, fade
 layout: true
@@ -1328,7 +1367,7 @@ console.log('Bye!');
 <div class="execution-context flex rows spaces-around">
         <div class="call-stack-wrapper flex columns context-box">
             <div>
-                <div>Call stack</div>
+                <div class="execution-context-title">Call stack</div>
                 <hr/>
             </div>
             <div class="call-stack flex columns">
@@ -1337,7 +1376,7 @@ console.log('Bye!');
         </div>
         <div class="thread-context flex columns context-box">
             <div>
-                <div>Thread</div>
+                <div class="execution-context-title">Thread</div>
                 <hr/>
             </div>
             <div class="flex columns">
@@ -1346,7 +1385,7 @@ console.log('Bye!');
         </div>
         <div class="var-env flex columns context-box">
             <div>
-                <div>Variable Enviroment</div>
+                <div class="execution-context-title">Variable Enviroment</div>
                 <hr/>
             </div>
             <div class="flex columns">
@@ -1354,7 +1393,7 @@ console.log('Bye!');
             </div>
             <div class="console flex columns">
                 <div>
-                    <div>Console:</div>
+                    <div class="execution-context-title">Console:</div>
                     <hr/>
                 </div>
                 <div>Hi!</div>
@@ -1375,7 +1414,7 @@ console.log('Bye!');
 <div class="execution-context flex rows spaces-around">
         <div class="call-stack-wrapper flex columns context-box">
             <div>
-                <div>Call stack</div>
+                <div class="execution-context-title">Call stack</div>
                 <hr/>
             </div>
             <div class="call-stack flex columns">
@@ -1384,7 +1423,7 @@ console.log('Bye!');
         </div>
         <div class="thread-context flex columns context-box">
             <div>
-                <div>Thread</div>
+                <div class="execution-context-title">Thread</div>
                 <hr/>
             </div>
             <div class="flex columns">
@@ -1394,7 +1433,7 @@ console.log('Bye!');
         </div>
         <div class="var-env flex columns context-box">
             <div>
-                <div>Variable Enviroment</div>
+                <div class="execution-context-title">Variable Enviroment</div>
                 <hr/>
             </div>
             <div class="flex columns">
@@ -1405,7 +1444,7 @@ console.log('Bye!');
             </div>
             <div class="console flex columns">
                 <div>
-                    <div>Console:</div>
+                    <div class="execution-context-title">Console:</div>
                     <hr/>
                 </div>
                 <div>Hi!</div>
@@ -1425,7 +1464,7 @@ console.log('Bye!');
 <div class="execution-context flex rows spaces-around">
     <div class="call-stack-wrapper flex columns context-box">
         <div>
-            <div>Call stack</div>
+            <div class="execution-context-title">Call stack</div>
             <hr/>
         </div>
         <div class="call-stack flex columns">
@@ -1434,7 +1473,7 @@ console.log('Bye!');
     </div>
     <div class="thread-context flex columns context-box">
         <div>
-            <div>Thread</div>
+            <div class="execution-context-title">Thread</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1445,7 +1484,7 @@ console.log('Bye!');
     </div>
     <div class="var-env flex columns context-box">
         <div>
-            <div>Variable Enviroment</div>
+            <div class="execution-context-title">Variable Enviroment</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1456,7 +1495,7 @@ console.log('Bye!');
         </div>
         <div class="console flex columns">
             <div>
-                <div>Console:</div>
+                <div class="execution-context-title">Console:</div>
                 <hr/>
             </div>
             <div>Hi!</div>
@@ -1477,7 +1516,7 @@ console.log('Bye!');
 <div class="execution-context flex rows spaces-around">
 <div class="call-stack-wrapper flex columns context-box">
 <div>
-<div>Call stack</div>
+<div class="execution-context-title">Call stack</div>
 <hr/>
 </div>
 <div class="call-stack flex columns">
@@ -1487,7 +1526,7 @@ console.log('Bye!');
 </div>
 <div class="thread-context flex columns context-box">
 <div>
-<div>Thread</div>
+<div class="execution-context-title">Thread</div>
 <hr/>
 </div>
 <div class="flex columns">
@@ -1498,7 +1537,7 @@ console.log('Bye!');
 <div class="execution-context nested-context flex rows spaces-around">
 <div class="thread-context flex columns context-box">
     <div>
-        <div>Thread</div>
+        <div class="execution-context-title">Thread</div>
         <hr/>
     </div>
     <div class="flex columns">
@@ -1507,7 +1546,7 @@ console.log('Bye!');
 </div>
 <div class="var-env flex columns context-box">
     <div>
-        <div>memory</div>
+        <div class="execution-context-title">memory</div>
         <hr/>
     </div>
     <div class="flex columns">
@@ -1522,7 +1561,7 @@ console.log('Bye!');
 </div>
 <div class="var-env flex columns context-box">
 <div>
-<div>Variable Enviroment</div>
+<div class="execution-context-title">Variable Enviroment</div>
 <hr/>
 </div>
 <div class="flex columns">
@@ -1533,7 +1572,7 @@ console.log('Bye!');
 </div>
 <div class="console flex columns">
 <div>
-    <div>Console:</div>
+    <div class="execution-context-title">Console:</div>
     <hr/>
 </div>
 <div>Hi!</div>
@@ -1554,7 +1593,7 @@ console.log('Bye!');
 <div class="execution-context flex rows spaces-around">
     <div class="call-stack-wrapper flex columns context-box">
         <div>
-            <div>Call stack</div>
+            <div class="execution-context-title">Call stack</div>
             <hr/>
         </div>
         <div class="call-stack flex columns">
@@ -1564,7 +1603,7 @@ console.log('Bye!');
     </div>
     <div class="thread-context flex columns context-box">
         <div>
-            <div>Thread</div>
+            <div class="execution-context-title">Thread</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1574,7 +1613,7 @@ console.log('Bye!');
             <div class="execution-context nested-context flex rows spaces-around">
                 <div class="thread-context flex columns context-box">
                     <div>
-                        <div>Thread</div>
+                        <div class="execution-context-title">Thread</div>
                         <hr/>
                     </div>
                     <div class="flex columns">
@@ -1583,7 +1622,7 @@ console.log('Bye!');
                 </div>
                 <div class="var-env flex columns context-box">
                     <div>
-                        <div>memory</div>
+                        <div class="execution-context-title">memory</div>
                         <hr/>
                     </div>
                     <div class="flex columns">
@@ -1598,7 +1637,7 @@ console.log('Bye!');
     </div>
     <div class="var-env flex columns context-box">
         <div>
-            <div>Variable Enviroment</div>
+            <div class="execution-context-title">Variable Enviroment</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1609,7 +1648,7 @@ console.log('Bye!');
         </div>
         <div class="console flex columns">
             <div>
-                <div>Console:</div>
+                <div class="execution-context-title">Console:</div>
                 <hr/>
             </div>
             <div>Hi!</div>
@@ -1631,7 +1670,7 @@ greet("Sagiv");
 <div class="execution-context flex rows spaces-around">
     <div class="call-stack-wrapper flex columns context-box">
         <div>
-            <div>Call stack</div>
+            <div class="execution-context-title">Call stack</div>
             <hr/>
         </div>
         <div class="call-stack flex columns">
@@ -1640,7 +1679,7 @@ greet("Sagiv");
     </div>
     <div class="thread-context flex columns context-box">
         <div>
-            <div>Thread</div>
+            <div class="execution-context-title">Thread</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1650,7 +1689,7 @@ greet("Sagiv");
             <div class="execution-context nested-context garbage-context flex rows spaces-around">
                 <div class="thread-context flex columns context-box">
                     <div>
-                        <div>Thread</div>
+                        <div class="execution-context-title">Thread</div>
                         <hr/>
                     </div>
                     <div class="flex columns">
@@ -1659,7 +1698,7 @@ greet("Sagiv");
                 </div>
                 <div class="var-env flex columns context-box">
                     <div>
-                        <div>memory</div>
+                        <div class="execution-context-title">memory</div>
                         <hr/>
                     </div>
                     <div class="flex columns">
@@ -1675,7 +1714,7 @@ greet("Sagiv");
     </div>
     <div class="var-env flex columns context-box">
         <div>
-            <div>Variable Enviroment</div>
+            <div class="execution-context-title">Variable Enviroment</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1686,7 +1725,7 @@ greet("Sagiv");
         </div>
         <div class="console flex columns">
             <div>
-                <div>Console:</div>
+                <div class="execution-context-title">Console:</div>
                 <hr/>
             </div>
             <div>Hi!</div>
@@ -1792,7 +1831,7 @@ consoleLogs:
 <div class="execution-context flex rows spaces-around">
     <div class="call-stack-wrapper flex columns context-box">
         <div>
-            <div>Call stack</div>
+            <div class="execution-context-title">Call stack</div>
             <hr/>
         </div>
         <div class="call-stack flex columns">
@@ -1802,7 +1841,7 @@ consoleLogs:
     </div>
     <div class="thread-context flex columns context-box">
         <div>
-            <div>Thread</div>
+            <div class="execution-context-title">Thread</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1812,7 +1851,7 @@ consoleLogs:
     </div>
     <div class="var-env flex columns context-box">
         <div>
-            <div>Variable Enviroment</div>
+            <div class="execution-context-title">Variable Enviroment</div>
             <hr/>
         </div>
         <div class="flex columns">
@@ -1824,7 +1863,7 @@ consoleLogs:
         </div>
         <div class="console flex columns">
             <div>
-                <div>Console:</div>
+                <div class="execution-context-title">Console:</div>
                 <hr/>
             </div>
             <!-- <div>Hi!</div> -->
@@ -2092,6 +2131,7 @@ template: promise
 
 layout: true
 name: promise context
+class: promise-context
 template: promise
 memoryVariables:
 consoleLogs:
@@ -2120,7 +2160,7 @@ xhrStatus: false
 <div class="execution-context flex rows spaces-around">
         <div class="call-stack-wrapper flex columns context-box">
             <div>
-                <div>Call stack</div>
+                <div class="execution-context-title">Call stack</div>
                 <hr/>
             </div>
             <div class="call-stack flex columns">
@@ -2130,7 +2170,7 @@ xhrStatus: false
         </div>
         <div class="thread-context flex columns context-box">
             <div>
-                <div>Thread</div>
+                <div class="execution-context-title">Thread</div>
                 <hr/>
             </div>
             <div class="flex columns">
@@ -2140,7 +2180,7 @@ xhrStatus: false
         </div>
         <div class="var-env flex columns context-box">
             <div>
-                <div>Variable Enviroment</div>
+                <div class="execution-context-title">Variable Enviroment</div>
                 <hr/>
             </div>
             <div class="flex columns">
@@ -2166,7 +2206,7 @@ xhrStatus: false
             </div>
             <div class="console flex columns">
                 <div>
-                    <div>Console:</div>
+                    <div class="execution-context-title">Console:</div>
                     <hr/>
                 </div>
                 <!-- <div>Hi!</div> -->
@@ -2280,24 +2320,6 @@ promiseThen:
 ---
 
 template: promise context
-mark6: *
-threadCommnads: <div>function displayUser(...</div><div>function printHello(...</div><div>function block500ms(...</div><div>setTimeout(printHello, 0)</div><div>const userFromServer = fetch('https://d.com/user/1')</div>
-displayUser:
-printHello:
-block500ms:
-promiseObj:
-timer:
-timerStatus: true
-taskClass:
-cbTaskHiddenClass:
-xhr:
-promiseThen:
-microTaskClass: 
-microTaskQueClass:
-cbTaskHiddenClass:
----
-
-template: promise context
 mark7: *
 threadCommnads: <div>function displayUser(...</div><div>function printHello(...</div><div>function block500ms(...</div><div>setTimeout(printHello, 0)</div><div>const userFromServer = fetch('https://d.com/user/1')</div><div>block500ms()</div>
 displayUser:
@@ -2307,8 +2329,6 @@ promiseObj:
 timer:
 timerStatus: true
 taskClass:
-microTaskClass:
-microTaskQueClass:
 cbTaskHiddenClass:
 xhr:
 promiseThen:
@@ -2325,15 +2345,31 @@ promiseObj:
 timer:
 timerStatus: true
 taskClass:
+cbTaskHiddenClass:
+xhr:
+promiseThen:
+xhrStatus: true
+consoleLogs: <div>global</div>
+
+---
+
+template: promise context
+threadCommnads: <div>function displayUser(...</div><div>function printHello(...</div><div>function block500ms(...</div><div>setTimeout(printHello, 0)</div><div>const userFromServer = fetch('https://d.com/user/1')</div><div>block500ms()</div>
+displayUser:
+printHello:
+block500ms:
+promiseObj:
+timer:
+timerStatus: true
+taskClass:
 microTaskClass:
 microTaskQueClass:
 cbTaskHiddenClass:
 xhr:
 promiseThen:
+xhrStatus: true
 consoleLogs: <div>global</div>
-
 ---
-
 
 template: promise context
 mark1: *
@@ -2453,7 +2489,7 @@ memoResult:hide
 memoResultVal:
 callstackGlobal:
 callStackGeneratedFunc: hide
-callStackfunGenerator: hide
+callStackfuncGenerator: hide
 executionFuncGenerator: hide
 executionGeneratedFunc: hide
 executionContextSecond: hide
@@ -2469,7 +2505,7 @@ memoNum: hide
 # Returning A Function
 
 ```
-{{mark1}}function funGenerator(){
+{{mark1}}function funcGenerator(){
 {{mark2}}    function add2(num){
 {{mark3}}        return num + 2;
 {{mark4}}    }
@@ -2490,7 +2526,7 @@ memoNum: hide
                 </div>
                 <div class="call-stack flex columns">
                     <div class="stack-item {{callStackGeneratedFunc}}">generatedFunc()</div>
-                    <div class="stack-item {{callStackfunGenerator}}">funGenerator()</div>
+                    <div class="stack-item {{callStackfuncGenerator}}">funcGenerator()</div>
                     <div class="stack-item {{callstackGlobal}}">global()</div>
                 </div>
             </div>
@@ -2560,8 +2596,8 @@ memoNum: hide
             <div class="flex columns">
                 <div class="flex columns">
                     <div class="var-dclr flex rows">
-                        <div class="var-title {{memoFuncGenerator}}">funGenerator:</div>
-                        <div class="var-value function {{memoGeneratedFunc}}"></div>
+                        <div class="var-title {{memoFuncGenerator}}">funcGenerator:</div>
+                        <div class="var-value function {{memoFuncGenerator}}"></div>
                     </div>
                     <div class="var-dclr flex rows">
                         <div class="var-title {{memoGeneratedFunc}}">generatedFunc:</div>
@@ -2592,7 +2628,7 @@ varDefenitionGeneratedFunc: undefined-var
 ---
 mark2:*
 callstackGlobal:
-callStackfunGenerator: active-forced
+callStackfuncGenerator: active-forced
 executionFuncGenerator:
 memoFuncGenerator:
 memoGeneratedFunc:
@@ -2603,7 +2639,7 @@ executionSecondAdd2:
 ---
 mark5:*
 callstackGlobal:
-callStackfunGenerator: active-forced
+callStackfuncGenerator: active-forced
 executionFuncGenerator:
 memoFuncGenerator:
 memoGeneratedFunc:

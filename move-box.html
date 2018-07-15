@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>move box</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #root {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 200px;
+            width: 200px;
+            border: 1px solid #333;
+            margin: 20px 0;
+            color: #fff;
+            font-size: 30px;
+        }
+
+        #box1 {
+            background-color: slateblue;
+        }
+
+        #box2 {
+            background-color: brown;
+        }
+
+        #box3 {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div class="box" id="box3">setInterval hack</div>
+        <div class="box" id="box1">rAF</div>
+        <div class="box" id="box2">setInterval</div>
+    </div>
+
+    <script>
+        const showBox2 = location.search.includes('box2');
+        const showBox3 = location.search.includes('box3');
+
+        const box1 = document.getElementById('box1');
+        const box2 = document.getElementById('box2');
+        const box3 = document.getElementById('box3');
+
+        // move by 1 px
+        function move1px(el) {
+            let left = 0;
+            return function () {
+                // infinite looping logic - if off screen start over
+                if (document.documentElement.clientWidth < left) {
+                    left = 0;
+                } else {
+                    left++;
+                }
+                // move left by 1 px
+                el.style.left = left + 'px';
+            }
+        }
+
+        // raf solution
+        const moveBox1 = move1px(box1);
+
+        function callback() {
+            moveBox1();
+            requestAnimationFrame(callback);
+        }
+        callback();
+
+
+        // setInterval solution
+        if (showBox2) {
+            const moveBox2 = move1px(box2);
+            setInterval(moveBox2, 0);
+        } else{
+            box2.style.display = 'none';
+        }
+
+        // setInterval hack
+        if (showBox3) {
+            const moveBox3 = move1px(box3);
+            setInterval(moveBox3, 1000 / 60);
+        }else{
+            box3.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>
